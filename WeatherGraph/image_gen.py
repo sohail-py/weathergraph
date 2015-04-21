@@ -5,7 +5,7 @@ import json
 def generate_forecast_image(city, country, days_count, image_file_name = 'bar_chart'):
 	'''
 	A function to generate an bar chart image in an svg format for minimum, maximum and Average
-	temperature 
+	temperature - Nishant
 	'''
 
 	api_url = "http://api.openweathermap.org/data/2.5/forecast/daily?&lang=zh_cn&q=%s,%s&units=metric&cnt=%d" % (city, country, int(days_count))
