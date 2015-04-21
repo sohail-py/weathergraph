@@ -1,0 +1,4 @@
+pygal==1.7.0
+pycairo==1.10.0
+CairoSVG==1.0.13
+cairocffi==0.6
