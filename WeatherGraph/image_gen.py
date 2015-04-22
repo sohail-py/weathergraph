@@ -4,6 +4,9 @@ import json
 
 
 class ForcastImage:
+	'''
+	this class will convert weather data in to chart.
+	'''
 	
 	def __init__(self,city,country,days_count,image_file_name= 'bar_chart'):
 		
