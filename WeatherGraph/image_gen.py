@@ -37,6 +37,7 @@ class ForcastImage:
 		self.line_chart.add('Average day Temp',self.day_temp_list)
 		
 		self.line_chart.render_to_file(self.image_file_name+'.svg')
+		self.line_chart.render_to_png(filename=self.image_file_name)
 		
 		
 		
