@@ -41,7 +41,7 @@ class ForecastImage:
 		self.line_chart.add('Average day Temp',self.day_temp_list)
 		
 		self.line_chart.render_to_file(self.image_file_name+'.svg')
-		self.line_chart.render_to_png(filename=self.image_file_name)
+		self.line_chart.render_to_png(filename=self.image_file_name+'.png')
 
 class RainForecastImage:
 	'''
@@ -65,7 +65,6 @@ class RainForecastImage:
 	def genrateRainForecastImage(self):
 
 		for each_day in self.weather_forecast[:-1]:
-			print each_day.keys()
 			if each_day.has_key('rain') == True:
 
 				self.rain_forecast_list.append(each_day['rain'])
@@ -78,7 +77,7 @@ class RainForecastImage:
 		
 		bar_chart.add('Rains',  self.rain_forecast_list)
 		bar_chart.render_to_file(self.image_file_name +'.svg')
-		bar_chart.render_to_png(filename=self.image_file_name)
+		bar_chart.render_to_png(filename=self.image_file_name+'.png')
 
 		
 
