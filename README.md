@@ -1,6 +1,11 @@
 # weathergraph
 Weather Graph is a python library which can be used to generate Weather Graph in svg and png format.
 
+#Description
+
+The weather Graph modules calls the open weather API http://openweathermap.org/ and generates whether temperature graphs for next n number of days showing graph of minimum, maximum and average day temperatures.
+
+
 
 #Requirements
 This package requires the pre requisites 
