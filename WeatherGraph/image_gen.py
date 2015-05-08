@@ -1,7 +1,30 @@
 import pygal
 import urllib2
 import json
+import calendar
+from datetime import datetime
 
+
+class dayslimitexceeded(Exception):
+	pass
+
+def returnDaysAheadoftime(days_count_from_today):
+	'''
+	this function will return list of dates from current month to next month.
+	currently only avaibale for days < 16
+	'''
+	if days_count_from_today > 16:
+		raise dayslimitexceeded('Days limit exceeded ,days < 16')
+	
+	x=1
+	days_list=[]
+	for i in range(datetime.now().day,datetime.now().day+days_count_from_today):
+		if i > calendar.monthrange(datetime.now().year,datetime.now().month)[1]:
+			days_list.append(x)
+			x+=1
+		else:
+			days_list.append(i)
+	return days_list
 
 class ForecastImage:
 	'''
@@ -23,6 +46,7 @@ class ForecastImage:
 		self.api_response = urllib2.urlopen(self.api_url).read()
 		self.weather_data = json.loads(self.api_response)
 		self.weather_forecast = self.weather_data['list']
+		self.days_list=[]
 
 	def generateImage(self):
 		
@@ -33,8 +57,9 @@ class ForecastImage:
 			self.day_temp_list.append(each_day['temp']['day'])
 			
 		self.line_chart = pygal.Line()
-		self.line_chart.title = 'Temperature for next 16 days in %s, %s' % (self.city.capitalize(), self.country.upper()) 
-		self.line_chart.x_labels = map(str, range(21, 21+16))
+		self.line_chart.title = 'Temperature for next %s days in %s, %s' % (self.days_count,self.city.capitalize(), self.country.upper()) 
+# 		self.line_chart.x_labels = map(str, range(21, 21+16))
+		self.line_chart.x_labels = map(str, returnDaysAheadoftime(self.days_count))
 		
 		self.line_chart.add('Maximum Temp',  self.max_temp_list)
 		self.line_chart.add('Minimum Temp', self.min_temp_list)
@@ -73,7 +98,9 @@ class RainForecastImage:
 				self.rain_forecast_list.append(0)
 		bar_chart = pygal.Bar()
 		bar_chart.title = 'Rain forecast for next 16 days in %s, %s' % (self.city.capitalize(), self.country.upper()) 
-		bar_chart.x_labels = map(str, range(21, 21+16))
+# 		bar_chart.x_labels = map(str, range(21, 21+16))
+		bar_chart.x_labels = map(str, returnDaysAheadoftime(self.days_count))
+		
 		
 		bar_chart.add('Rains',  self.rain_forecast_list)
 		bar_chart.render_to_file(self.image_file_name +'.svg')
@@ -82,7 +109,7 @@ class RainForecastImage:
 		
 
 if __name__ == '__main__':
-	f=ForecastImage('Pune','in', 10, 'pune_in')
+	f=ForecastImage('Pune','in', 15, 'pune_in')
 	f.generateImage()
 	obj1 = RainForecastImage('Pune','in',16,'rain_forecast_pune')
 	obj1.genrateRainForecastImage()
