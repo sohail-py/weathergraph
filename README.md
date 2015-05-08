@@ -10,12 +10,13 @@ The weather Graph modules calls the open weather API http://openweathermap.org/ 
 #Requirements
 This package requires the pre requisites 
 
-pygal==1.7.0 <a href="http://pygal.org/">Pygal python library for graph plotting. </a>
-pycairo==1.10.0
-CairoSVG==1.0.13
-cairocffi==0.6
-lxml==3.4.1
-tinycss==0.3
-cssselect==0.9.1
+* pygal==1.7.0 (http://pygal.org/)
+* pycairo==1.10.0 (http://cairographics.org/pycairo/)
+* CairoSVG==1.0.13 (http://cairosvg.org/)
+* cairocffi==0.6 (https://github.com/SimonSapin/cairocffi) 
+* lxml==3.4.1 (lxml.de)
+* tinycss==0.3 (https://pypi.python.org/pypi/tinycss)
+* cssselect==0.9.1 (https://pypi.python.org/pypi/cssselect)
+
 Please read requirements.txt 
 
